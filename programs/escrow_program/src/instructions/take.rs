@@ -8,6 +8,7 @@ use crate::{Escrow, ESCROW_SEED};
 
 #[derive(Accounts)]
 pub struct Take<'info> {
+    /// CHECK: Verified via address constraint against escrow.maker
     #[account(mut, address = escrow.maker)]
     pub maker: UncheckedAccount<'info>,
 

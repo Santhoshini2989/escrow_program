@@ -11,8 +11,11 @@ use crate::{error::EscrowError, Escrow, ESCROW_SEED};
 pub struct Make<'info> {
     #[account(mut)]
     pub maker: Signer<'info>,
-    pub taker: UncheckedAccount<'info>,
-
+    /// CHECK: The taker's public key is stored in the escrow state
+    /// and used to authorize the intended taker during the escrow exchange.
+    pub taker: UncheckedAccount<'info>,   
+    
+  
     #[account(
         mint::token_program = token_program
     )]
