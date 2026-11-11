@@ -9,17 +9,13 @@ pub use constants::*;
 pub use instructions::*;
 pub use state::*;
 
-declare_id!("GGWVPdVZmY6bULgNnnEhTaq1h7UWMQMU2WW7Wk5hVfv2");
+declare_id!("GLgTQijP6D3A2433oWwraj55BN9uQEz9uXQ38z66pdPq");
 
 #[program]
 pub mod escrow_program {
     use super::*;
 
-    pub fn initialize(ctx: Context<Initialize>) -> Result<()> {
-        crate::instructions::initialize::handle_initialize(ctx)
-    }
-
-    pub fn increment(ctx: Context<Increment>) -> Result<()> {
-        crate::instructions::increment::handle_increment(ctx)
+    pub fn make(ctx: Context<Make>, seed: u64, deposit: u64, receive: u64) -> Result<()> {
+        ctx.accounts.make(seed, deposit, receive, &ctx.bumps)
     }
 }
